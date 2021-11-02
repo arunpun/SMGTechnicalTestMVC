@@ -25,8 +25,26 @@ namespace SMGTechnicalTestMVC.Controllers
 
         public IActionResult App()
         {
-            return View();
+            Game game = new Game();
+            game.ComputerChoice = "";
+            game.PlayerChoice = "";
+            game.GameResult = "";
+            
+            return View(game);
         }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult App(Game game)
+        {
+            //Call method to pass playerChoice to a game helper class and determine the result
+            var playerChoice = game.PlayerChoice;
+            var gameHelper = new GameHelper();
+            var newGame = gameHelper.GetResults(game);
+
+            return View(newGame);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,5 +1,63 @@
-﻿@{
+﻿@model SMGTechnicalTestMVC.Models.Game
+
+@{
     ViewData["Title"] = "App Page";
 }
 
-<p>Welcome to the App page.</p>
+
+
+<form method="post" asp-action="App">
+    <div class="container">
+        <h2 class="text-black-50 text-center">Welcome to Rock, Paper or Scissors game!</h2>
+        <hr />
+
+        <br />
+        <div class="row">
+            <div class="col">
+                Rock img here
+            </div>
+            <div class="col">
+                Paper img here
+            </div>
+            <div class="col">
+                Scissors img here
+            </div>
+        </div>
+        <hr />
+        <h5 class="text-center">Please type in your selection below:</h5>
+        <div class="row">
+            <div class="col-12 text-center">
+                <input type="text" style="width: min-content" asp-for="@Model.PlayerChoice" />
+
+            </div>
+            <br />
+            <div class="col-12 text-center">
+                <button type="submit" class="mt-2 btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+<hr />
+<!--Container to show game results here-->
+<div class="container mt-5">
+    @if (Model.GameResult.Count() > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Player chose</th>
+                    <th>Computer chose</th>
+                    <th>Game result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="30%">@Model.PlayerChoice</td>
+                    <td width="30%">@Model.ComputerChoice</td>
+                    <td width="40%">@Model.GameResult</td>
+                </tr>
+            </tbody>
+
+        </table>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SMGTechnicalTestMVC.Models.Game>
+
+@if (Model.Count() > 0)
+{
+    <h2 class="text-black-50 mt-2 mb-2">Game History</h2>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Game number
+                </th>
+                <th>
+                    Player choice
+                </th>
+                <th>
+                    Computer choice
+                </th>
+                <th>
+                    Game result
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <td>@game.Id</td>
+                    <td>@game.PlayerChoice</td>
+                    <td>@game.ComputerChoice</td>
+                    <td>@game.GameResult</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No games created yet.</p>
+}

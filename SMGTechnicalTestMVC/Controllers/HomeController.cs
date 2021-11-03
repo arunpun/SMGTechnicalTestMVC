@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SMGTechnicalTestMVC.Data;
 using SMGTechnicalTestMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace SMGTechnicalTestMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //Use dependency injection to get data from the database using ApplicationDbContext
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
@@ -42,9 +46,11 @@ namespace SMGTechnicalTestMVC.Controllers
             var gameHelper = new GameHelper();
             var newGame = gameHelper.GetResults(game);
 
+            _db.Games.Add(newGame);
+            _db.SaveChanges();
+
             return View(newGame);
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

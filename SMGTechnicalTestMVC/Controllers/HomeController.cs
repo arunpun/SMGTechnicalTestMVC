@@ -33,7 +33,7 @@ namespace SMGTechnicalTestMVC.Controllers
             game.ComputerChoice = "";
             game.PlayerChoice = "";
             game.GameResult = "";
-            
+
             return View(game);
         }
 
@@ -46,8 +46,11 @@ namespace SMGTechnicalTestMVC.Controllers
             var gameHelper = new GameHelper();
             var newGame = gameHelper.GetResults(game);
 
-            _db.Games.Add(newGame);
-            _db.SaveChanges();
+            if (ModelState.IsValid && game.GameResult != null)
+            {
+                _db.Games.Add(newGame);
+                _db.SaveChanges();
+            }
 
             return View(newGame);
         }

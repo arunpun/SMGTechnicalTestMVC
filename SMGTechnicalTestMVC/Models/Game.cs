@@ -10,6 +10,7 @@ namespace SMGTechnicalTestMVC.Models
     {
         [Key]
         public int Id{ get; set; }
+        [Required]
         public String PlayerChoice { get; set; }
         public String ComputerChoice { get; set; }
         public String GameResult { get; set; }

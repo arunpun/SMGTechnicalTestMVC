@@ -6,6 +6,7 @@
 
 <form method="post" asp-action="App">
     <div class="container">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <h2 class="text-black-50 text-center mt-1">Welcome to Rock, Paper or Scissors game!</h2>
         <br />
         <h6 class="text-center">Type in your selection below and click on submit, the game information is automatically stored in the database. You can also view the game history.</h6>
@@ -14,7 +15,7 @@
         <br />
         <div class="row">
             <div class="col">
-                <img src="/img/rock.png"/>
+                <img src="/img/rock.png" />
             </div>
             <div class="col">
                 <img src="/img/paper.png" width="300" height="300" />
@@ -26,21 +27,25 @@
         <hr />
         <h5 class="text-center">Please type in your selection below:</h5>
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col text-center">
                 <input type="text" style="width: min-content" asp-for="@Model.PlayerChoice" />
-
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <br />
-            <div class="col-12 text-center">
-                <button type="submit" class="mt-2 btn btn-primary">Submit</button>
-            </div>
+            <span asp-validation-for="PlayerChoice" class="text-danger text-center"/>
         </div>
     </div>
 </form>
 <hr />
 <!--Container to show game results here-->
 <div class="container mt-0 mb-0">
-    @if (Model.GameResult.Count() > 0)
+    @if (Model.GameResult == null)
+    {
+    <div class="text-danger text-center">
+        <p>Please enter a valid choice</p>
+        <a class="btn btn-primary" asp-controller="Home" asp-action="App">Try again</a>
+    </div>
+    }
+    else if (Model.GameResult != null && Model.GameResult != "")
     {
         <table class="table table-striped" id="resultTable">
             <thead>
@@ -68,7 +73,11 @@
                 </div>
             </div>
         </div>
-       
     }
-
 </div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

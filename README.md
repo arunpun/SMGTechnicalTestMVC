@@ -9,15 +9,15 @@
 - The user can track the history of the games played
 
 ## Screenshots
-![Example screenshot](.img//Screenshots/1.PNG)
+![Example screenshot](./Screenshots/1.PNG)
 
-![Example screenshot](.img/Screenshots/2.PNG)
+![Example screenshot](./Screenshots/2.PNG)
 
-![Example screenshot](.img/Screenshots/3.PNG)
+![Example screenshot](./Screenshots/3.PNG)
 
-![Example screenshot](.img/Screenshots/4.PNG)
+![Example screenshot](./Screenshots/4.PNG)
 
-![Example screenshot](.img/Screenshots/5.PNG)
+![Example screenshot](./Screenshots/5.PNG)
 
 ## Project Status
 Project is : Complete :)
